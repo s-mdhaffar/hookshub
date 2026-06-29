@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 const hooks = [
   {
     category: "State",
@@ -58,7 +62,39 @@ const hooks = [
   },
 ];
 
+type Hook = { name: string; desc: string };
+
+function HookModal({ hook, onClose }: { hook: Hook; onClose: () => void }) {
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        className="relative bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl w-full max-w-md mx-4 p-8"
+        style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors"
+          aria-label="Close"
+        >
+          ✕
+        </button>
+        <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-3">
+          {hook.name}
+        </h2>
+        <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          {hook.desc}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
+  const [selectedHook, setSelectedHook] = useState<Hook | null>(null);
   const totalHooks = hooks.reduce((sum, cat) => sum + cat.items.length, 0);
 
   return (
@@ -115,6 +151,7 @@ export default function Home() {
               {category.items.map((hook) => (
                 <div
                   key={hook.name}
+                  onClick={() => setSelectedHook(hook)}
                   className={`group rounded-xl border ${category.border} ${category.color} p-5 transition-all hover:shadow-md hover:-translate-y-0.5 cursor-pointer`}
                 >
                   <p className={`font-[family-name:var(--font-geist-mono)] text-sm font-semibold ${category.accent} mb-2`}>
@@ -135,6 +172,10 @@ export default function Home() {
           HooksHub — built with Next.js 16 &amp; React 19
         </div>
       </footer>
+
+      {selectedHook && (
+        <HookModal hook={selectedHook} onClose={() => setSelectedHook(null)} />
+      )}
     </div>
   );
 }
