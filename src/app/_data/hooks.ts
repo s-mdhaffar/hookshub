@@ -7,18 +7,12 @@ export type HookItem = {
 
 export type HookCategory = {
   category: string;
-  color: string;
-  accent: string;
-  border: string;
   items: HookItem[];
 };
 
 export const hooks: HookCategory[] = [
   {
     category: "State",
-    color: "bg-blue-50 dark:bg-blue-950/30",
-    accent: "text-blue-600 dark:text-blue-400",
-    border: "border-blue-100 dark:border-blue-900",
     items: [
       {
         name: "useState",
@@ -61,9 +55,6 @@ function Counter() {
   },
   {
     category: "Effects",
-    color: "bg-purple-50 dark:bg-purple-950/30",
-    accent: "text-purple-600 dark:text-purple-400",
-    border: "border-purple-100 dark:border-purple-900",
     items: [
       {
         name: "useEffect",
@@ -118,9 +109,6 @@ function useCSSRule(rule: string) {
   },
   {
     category: "Context & Refs",
-    color: "bg-amber-50 dark:bg-amber-950/30",
-    accent: "text-amber-600 dark:text-amber-400",
-    border: "border-amber-100 dark:border-amber-900",
     items: [
       {
         name: "useContext",
@@ -182,9 +170,6 @@ function useRef<T = undefined>(): MutableRefObject<T | undefined>`,
   },
   {
     category: "Performance",
-    color: "bg-green-50 dark:bg-green-950/30",
-    accent: "text-green-600 dark:text-green-400",
-    border: "border-green-100 dark:border-green-900",
     items: [
       {
         name: "useMemo",
@@ -255,9 +240,6 @@ function useRef<T = undefined>(): MutableRefObject<T | undefined>`,
   },
   {
     category: "Utilities",
-    color: "bg-rose-50 dark:bg-rose-950/30",
-    accent: "text-rose-600 dark:text-rose-400",
-    border: "border-rose-100 dark:border-rose-900",
     items: [
       {
         name: "useId",

@@ -1,67 +1,63 @@
 "use client";
 
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import IconButton from "@mui/material/IconButton";
+import { useEffect, useRef } from "react";
 import type { CSSProperties, ReactNode } from "react";
 import type { HookCategory, HookItem } from "@/app/_data/hooks";
 import { categoryHex } from "@/app/_data/categoryColors";
+import { INK_DIM, MUTED } from "@/app/_data/theme";
 
 type Props = {
   selected: { hook: HookItem; category: HookCategory } | null;
   onClose: () => void;
 };
 
-const SURFACE = "#1c1a15";
-const LINE = "#322e26";
-const INK = "#ece7da";
-const INK_DIM = "#b6ae9c";
-const MUTED = "#8c8472";
-
+/**
+ * Native <dialog> — gives us focus trapping, focus restore, Escape-to-close,
+ * and inert background for free, with no UI dependency. Styling lives in
+ * globals.css (.hook-dialog + ::backdrop).
+ */
 export default function HookModal({ selected, onClose }: Props) {
+  const ref = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const dialog = ref.current;
+    if (!dialog) return;
+    if (selected && !dialog.open) dialog.showModal();
+    else if (!selected && dialog.open) dialog.close();
+  }, [selected]);
+
   const accent = selected ? categoryHex(selected.category.category) : "#ff6a3d";
 
   return (
-    <Dialog
-      open={!!selected}
+    <dialog
+      ref={ref}
+      className="hook-dialog"
       onClose={onClose}
-      maxWidth="md"
-      fullWidth
-      slotProps={{
-        backdrop: { sx: { backgroundColor: "#0a0908cc", backdropFilter: "blur(2px)" } },
-        paper: {
-          sx: {
-            borderRadius: "16px",
-            overflow: "hidden",
-            backgroundColor: SURFACE,
-            backgroundImage: "none",
-            color: INK,
-            border: `1px solid ${LINE}`,
-            boxShadow: "0 24px 80px -20px #000000cc",
-          },
-        },
+      onClick={(e) => {
+        // a click whose target is the dialog itself landed on the backdrop
+        if (e.target === ref.current) onClose();
       }}
+      aria-labelledby="hook-dialog-title"
     >
       {selected && (
-        <>
-          {/* category color rule along the top */}
+        <div>
           <div style={{ height: 3, background: accent }} aria-hidden />
 
-          <DialogTitle
-            sx={{
+          <header
+            style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              gap: 2,
-              px: 3,
-              py: 2.25,
-              borderBottom: `1px solid ${LINE}`,
+              gap: 16,
+              padding: "18px 24px",
+              borderBottom: "1px solid var(--line)",
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
-              <span
+              <h2
+                id="hook-dialog-title"
                 style={{
+                  margin: 0,
                   fontFamily: "var(--font-mono)",
                   fontSize: "1.05rem",
                   fontWeight: 600,
@@ -71,7 +67,7 @@ export default function HookModal({ selected, onClose }: Props) {
                 <span style={{ color: MUTED }}>[ </span>
                 <span style={{ color: accent }}>{selected.hook.name}</span>
                 <span style={{ color: MUTED }}> ]</span>
-              </span>
+              </h2>
               <span
                 style={{
                   fontFamily: "var(--font-mono)",
@@ -88,11 +84,11 @@ export default function HookModal({ selected, onClose }: Props) {
                 {selected.category.category}
               </span>
             </div>
-            <IconButton
+            <button
+              type="button"
               onClick={onClose}
               aria-label="Close"
-              size="small"
-              sx={{ color: MUTED, "&:hover": { color: INK, background: "#ffffff14" } }}
+              className="hook-dialog-close"
             >
               <svg
                 width="18"
@@ -106,17 +102,17 @@ export default function HookModal({ selected, onClose }: Props) {
                 <line x1="3" y1="3" x2="15" y2="15" />
                 <line x1="15" y1="3" x2="3" y2="15" />
               </svg>
-            </IconButton>
-          </DialogTitle>
+            </button>
+          </header>
 
-          <DialogContent sx={{ px: 3, pt: 2.5, pb: 3.25 }}>
+          <div style={{ padding: "20px 24px 26px" }}>
             <p
               style={{
+                margin: "0 0 1.75rem",
                 fontFamily: "var(--font-sans)",
                 fontSize: "0.9rem",
                 lineHeight: 1.7,
                 color: INK_DIM,
-                marginBottom: "1.75rem",
               }}
             >
               {selected.hook.desc}
@@ -129,10 +125,10 @@ export default function HookModal({ selected, onClose }: Props) {
               Example
             </SectionLabel>
             <CodeBlock>{selected.hook.example}</CodeBlock>
-          </DialogContent>
-        </>
+          </div>
+        </div>
       )}
-    </Dialog>
+    </dialog>
   );
 }
 
@@ -171,8 +167,8 @@ function CodeBlock({ children }: { children: ReactNode }) {
   return (
     <pre
       style={{
-        background: "#100f0c",
-        border: `1px solid ${LINE}`,
+        background: "var(--bg-deep)",
+        border: "1px solid var(--line)",
         borderRadius: "10px",
         padding: "1rem 1.1rem",
         overflowX: "auto",

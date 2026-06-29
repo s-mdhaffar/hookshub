@@ -10,11 +10,11 @@ import { useState } from "react";
 export default function HeroDemo({ names }: { names: string[] }) {
   const pool = names.length ? names : ["useState"];
   const [index, setIndex] = useState(0);
-  const [renders, setRenders] = useState(1);
+  const [calls, setCalls] = useState(0);
 
   const next = () => {
     setIndex((i) => (i + 1) % pool.length);
-    setRenders((r) => r + 1);
+    setCalls((c) => c + 1);
   };
 
   return (
@@ -57,8 +57,8 @@ export default function HeroDemo({ names }: { names: string[] }) {
           aria-live="polite"
           className="shrink-0 rounded-full border border-[var(--line-strong)] bg-[var(--surface)] px-3 py-1.5 font-mono text-xs text-[color:var(--muted)]"
         >
-          <span className="text-[color:var(--accent)]">{renders}</span> render
-          {renders !== 1 ? "s" : ""}
+          setHook called{" "}
+          <span className="text-[color:var(--accent)]">{calls}×</span>
         </span>
       </div>
     </section>

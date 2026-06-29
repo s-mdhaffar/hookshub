@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -37,9 +36,7 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${plexSans.variable} ${plexMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
-      </body>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }
