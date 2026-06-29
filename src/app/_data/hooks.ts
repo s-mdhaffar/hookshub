@@ -160,13 +160,13 @@ function useRef<T = undefined>(): MutableRefObject<T | undefined>`,
       },
       {
         name: "useImperativeHandle",
-        desc: "Customise the handle exposed via a ref to a parent component. Used with forwardRef to selectively expose methods instead of the entire DOM node.",
+        desc: "Customise the handle exposed via a ref to a parent component. Selectively expose methods instead of the entire DOM node. In React 19 the ref arrives as a regular prop — no forwardRef needed.",
         signature: `function useImperativeHandle<T, R extends T>(
   ref: Ref<T> | undefined,
   init: () => R,
   deps?: DependencyList
 ): void`,
-        example: `const FancyInput = forwardRef<{ focus(): void }, {}>(function FancyInput(_, ref) {
+        example: `function FancyInput({ ref }: { ref?: Ref<{ focus(): void }> }) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useImperativeHandle(ref, () => ({
@@ -176,7 +176,7 @@ function useRef<T = undefined>(): MutableRefObject<T | undefined>`,
   }));
 
   return <input ref={inputRef} />;
-});`,
+}`,
       },
     ],
   },

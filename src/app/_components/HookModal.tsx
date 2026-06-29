@@ -4,6 +4,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
+import type { CSSProperties, ReactNode } from "react";
 import type { HookCategory, HookItem } from "@/app/_data/hooks";
 import { categoryHex } from "@/app/_data/categoryColors";
 
@@ -140,12 +141,12 @@ function SectionLabel({
   accent,
   style,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   accent: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }) {
   return (
-    <p
+    <h3
       style={{
         display: "flex",
         alignItems: "center",
@@ -156,17 +157,17 @@ function SectionLabel({
         letterSpacing: "0.12em",
         textTransform: "uppercase",
         color: MUTED,
-        marginBottom: "0.65rem",
+        margin: "0 0 0.65rem",
         ...style,
       }}
     >
       <span style={{ width: 6, height: 6, borderRadius: 999, background: accent }} />
       {children}
-    </p>
+    </h3>
   );
 }
 
-function CodeBlock({ children }: { children: React.ReactNode }) {
+function CodeBlock({ children }: { children: ReactNode }) {
   return (
     <pre
       style={{

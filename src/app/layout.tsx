@@ -38,8 +38,8 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${plexSans.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-          <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
-        </body>
+        <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+      </body>
     </html>
   );
 }
