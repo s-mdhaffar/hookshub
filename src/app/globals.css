@@ -1,26 +1,71 @@
 @import "tailwindcss";
 
+/* ── HooksHub · "Destructured" theme ───────────────────────────────
+   warm console — graphite base, off-white ink, one signal accent.
+   category hues read like a syntax-highlight palette.            */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #14130f;
+  --bg-deep: #100f0c;
+  --surface: #1c1a15;
+  --surface-2: #232019;
+  --line: #322e26;
+  --line-strong: #423d32;
+  --ink: #ece7da;
+  --ink-dim: #b6ae9c;
+  --muted: #8c8472;
+  --accent: #ff6a3d;
+  --accent-soft: #ff6a3d24;
+
+  --cat-state: #5eb1ff;
+  --cat-effects: #c792ea;
+  --cat-context: #f5c451;
+  --cat-performance: #5dd9a8;
+  --cat-utilities: #ff7a9a;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--bg);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  /* faint drafting grid — quiet, only the hero leans on it */
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center top;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg-deep);
+}
+
+/* the bracket motif — used to frame labels across the page */
+.bracket::before { content: "["; color: var(--accent); margin-right: 0.4ch; }
+.bracket::after  { content: "]"; color: var(--accent); margin-left: 0.4ch; }
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
 }
