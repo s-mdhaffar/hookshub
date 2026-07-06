@@ -19,7 +19,7 @@ export default function HeroDemo({ names }: { names: string[] }) {
 
   return (
     <section className="pt-4">
-      <p className="bracket inline-block font-mono text-xs uppercase tracking-[0.25em] text-[color:var(--muted)]">
+      <p className="font-display text-lg italic tracking-tight text-[color:var(--ink-dim)]">
         A field guide to React hooks
       </p>
 

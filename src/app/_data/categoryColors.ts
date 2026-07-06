@@ -16,13 +16,13 @@ export function categoryColor(name: string): string {
 // Concrete hex equivalents — for contexts that can't resolve CSS vars
 // or need alpha blends (e.g. MUI sx).
 export const CATEGORY_HEX: Record<string, string> = {
-  State: "#5eb1ff",
-  Effects: "#c792ea",
-  "Context & Refs": "#f5c451",
-  Performance: "#5dd9a8",
-  Utilities: "#ff7a9a",
+  State: "#c1633d",
+  Effects: "#8b7cb6",
+  "Context & Refs": "#c99a3e",
+  Performance: "#6e8f63",
+  Utilities: "#5c84a6",
 };
 
 export function categoryHex(name: string): string {
-  return CATEGORY_HEX[name] ?? "#ff6a3d";
+  return CATEGORY_HEX[name] ?? "#d97757";
 }

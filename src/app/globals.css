@@ -1,27 +1,28 @@
 @import "tailwindcss";
 
 /* ── HooksHub · "Destructured" theme ───────────────────────────────
-   warm console — graphite base, off-white ink, one signal accent.
-   category hues read like a syntax-highlight palette.            */
+   warm paper base — cream surfaces, clay accent, editorial serif +
+   sans pairing. Code panels invert to a dark ink block for contrast.
+   category hues read like a muted earth-tone palette.             */
 
 :root {
-  --bg: #14130f;
-  --bg-deep: #100f0c;
-  --surface: #1c1a15;
-  --surface-2: #232019;
-  --line: #322e26;
-  --line-strong: #423d32;
-  --ink: #ece7da;
-  --ink-dim: #b6ae9c;
-  --muted: #8c8472;
-  --accent: #ff6a3d;
-  --accent-soft: #ff6a3d24;
+  --bg: #f5f4ee;
+  --bg-deep: #2a2822;
+  --surface: #fbfaf6;
+  --surface-2: #efece1;
+  --line: #e3e0d3;
+  --line-strong: #d3cfbd;
+  --ink: #1f1e1b;
+  --ink-dim: #58554c;
+  --muted: #8c887a;
+  --accent: #d97757;
+  --accent-soft: #d9775726;
 
-  --cat-state: #5eb1ff;
-  --cat-effects: #c792ea;
-  --cat-context: #f5c451;
-  --cat-performance: #5dd9a8;
-  --cat-utilities: #ff7a9a;
+  --cat-state: #c1633d;
+  --cat-effects: #8b7cb6;
+  --cat-context: #c99a3e;
+  --cat-performance: #6e8f63;
+  --cat-utilities: #5c84a6;
 }
 
 @theme inline {
@@ -45,12 +46,6 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-sans), system-ui, sans-serif;
-  /* faint drafting grid — quiet, only the hero leans on it */
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 64px 64px;
-  background-position: center top;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -74,11 +69,11 @@ body {
   background: var(--surface);
   color: var(--ink);
   overflow: hidden auto;
-  box-shadow: 0 24px 80px -20px #000000cc;
+  box-shadow: 0 24px 80px -20px #1f1e1b40;
 }
 
 .hook-dialog::backdrop {
-  background: #0a0908cc;
+  background: #2a2822b3;
   backdrop-filter: blur(2px);
 }
 
@@ -104,7 +99,7 @@ body {
   cursor: pointer;
   transition: color 0.15s, background 0.15s;
 }
-.hook-dialog-close:hover { color: var(--ink); background: #ffffff14; }
+.hook-dialog-close:hover { color: var(--ink); background: #1f1e1b0f; }
 .hook-dialog-close:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { hooks } from "@/app/_data/hooks";
 import HooksExplorer from "@/app/_components/HooksExplorer";
 import HeroDemo from "@/app/_components/HeroDemo";
@@ -20,7 +21,7 @@ export default function Home() {
       </main>
 
       <footer className="border-t border-[var(--line)]">
-        <div className="mx-auto flex max-w-5xl flex-col gap-1 px-6 py-10 font-mono text-xs text-[color:var(--muted)]">
+        <div className="mx-auto flex max-w-5xl flex-col gap-2 px-6 py-10 font-mono text-xs text-[color:var(--muted)]">
           <span>
             <span className="text-[color:var(--accent)]">return</span> &lt;HooksHub
             /&gt;;
@@ -28,6 +29,13 @@ export default function Home() {
           <span className="text-[color:var(--line-strong)]">
             Next.js 16 · React 19
           </span>
+          <Link
+            href="/claude-code-hooks"
+            className="mt-2 inline-flex w-fit items-center gap-1.5 text-[color:var(--muted)] transition-colors hover:text-[color:var(--ink)]"
+          >
+            Claude Code hooks{" "}
+            <span className="text-[color:var(--accent)]">→</span>
+          </Link>
         </div>
       </footer>
     </div>
