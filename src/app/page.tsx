@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { hooks } from "@/app/_data/hooks";
 import HooksExplorer from "@/app/_components/HooksExplorer";
 import HeroDemo from "@/app/_components/HeroDemo";
+import Hero from "@/app/_components/heros/TerminalHero";
 
 export default function Home() {
   const totalHooks = hooks.reduce((sum, cat) => sum + cat.items.length, 0);
@@ -8,20 +10,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header className="sticky top-0 z-20 border-b border-[var(--line)] bg-[var(--bg)]/85 backdrop-blur-md">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <span className="font-display text-lg font-semibold tracking-tight">
-            Hooks<span className="text-[color:var(--accent)]">Hub</span>
-          </span>
-          <span className="font-mono text-xs text-[color:var(--muted)]">
-            <span className="text-[color:var(--accent)]">{totalHooks}</span> hooks
-            {" · "}
-            <span className="text-[color:var(--ink-dim)]">{hooks.length}</span>{" "}
-            categories
-          </span>
-        </div>
-      </header>
+      <Hero totalHooks={totalHooks} categories={hooks.length} />
 
       <main className="mx-auto max-w-5xl px-6 pb-24 pt-10 sm:pt-16">
         <HeroDemo names={names} />
@@ -32,7 +21,7 @@ export default function Home() {
       </main>
 
       <footer className="border-t border-[var(--line)]">
-        <div className="mx-auto flex max-w-5xl flex-col gap-1 px-6 py-10 font-mono text-xs text-[color:var(--muted)]">
+        <div className="mx-auto flex max-w-5xl flex-col gap-2 px-6 py-10 font-mono text-xs text-[color:var(--muted)]">
           <span>
             <span className="text-[color:var(--accent)]">return</span> &lt;HooksHub
             /&gt;;
@@ -40,6 +29,13 @@ export default function Home() {
           <span className="text-[color:var(--line-strong)]">
             Next.js 16 · React 19
           </span>
+          <Link
+            href="/claude-code-hooks"
+            className="mt-2 inline-flex w-fit items-center gap-1.5 text-[color:var(--muted)] transition-colors hover:text-[color:var(--ink)]"
+          >
+            Claude Code hooks{" "}
+            <span className="text-[color:var(--accent)]">→</span>
+          </Link>
         </div>
       </footer>
     </div>

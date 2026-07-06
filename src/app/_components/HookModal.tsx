@@ -26,7 +26,7 @@ export default function HookModal({ selected, onClose }: Props) {
     else if (!selected && dialog.open) dialog.close();
   }, [selected]);
 
-  const accent = selected ? categoryHex(selected.category.category) : "#ff6a3d";
+  const accent = selected ? categoryHex(selected.category.category) : "#d97757";
 
   return (
     <dialog
@@ -180,7 +180,7 @@ function CodeBlock({ children }: { children: ReactNode }) {
           fontFamily: "var(--font-mono)",
           fontSize: "0.78rem",
           lineHeight: 1.75,
-          color: "#d8d2c4",
+          color: "#e7e2d2",
           whiteSpace: "pre",
         }}
       >

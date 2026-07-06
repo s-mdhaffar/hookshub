@@ -79,7 +79,7 @@ export default function HooksExplorer({ hooks }: { hooks: HookCategory[] }) {
                       key={hook.name}
                       type="button"
                       onClick={() => setSelected({ hook, category })}
-                      className="group relative overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--surface)] p-5 text-left outline-none transition-all hover:-translate-y-0.5 hover:border-[var(--line-strong)] hover:bg-[var(--surface-2)] focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+                      className="group relative overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--surface)] p-5 text-left outline-none transition-all hover:-translate-y-0.5 hover:border-[var(--line-strong)] hover:bg-[var(--surface-2)] hover:shadow-[0_12px_28px_-16px_#1f1e1b40] focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
                     >
                       {/* category color spine */}
                       <span

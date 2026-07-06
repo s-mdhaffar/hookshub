@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Source_Serif_4, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const sourceSerif = Source_Serif_4({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
-const plexSans = IBM_Plex_Sans({
+const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
@@ -34,7 +35,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${plexSans.variable} ${plexMono.variable} h-full antialiased`}
+      className={`${sourceSerif.variable} ${inter.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
