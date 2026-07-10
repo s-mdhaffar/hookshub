@@ -2,7 +2,7 @@ type HeroProps = {
   /** Total number of hooks across all categories. */
   totalHooks: number;
   /** Number of hook categories. */
-  categories: number;
+  categories: number | any;
 };
 
 /**
